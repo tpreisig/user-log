@@ -2,8 +2,8 @@ import express from 'express';
 import 'dotenv/config';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { format } from 'date-fns';
 import router from './routes/route.js';
+import dataLog from './middleware/entryLog.js';
 
 const app = express();
 const PORT = process.env.PORT_ASSIGNMENT || 3232;
@@ -14,8 +14,6 @@ app.use(express.static(join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
-
-
 
 app.use((req, res) => {
     res.status(404);
