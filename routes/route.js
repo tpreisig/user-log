@@ -2,8 +2,14 @@ import express from 'express';
 const router = express.Router();
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import dataLog from '../middleware/entryLog.js';
+import bcrypt from 'bcryptjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const encryptIt = async (password) => {
+    return await bcrypt.hash(password, 10);
+};
 
 // GET routes
 router.get(['/', '/index', '/index.html', '/home'], (req, res) => {
@@ -23,9 +29,13 @@ router.get('/register', (req, res) => {
 })
 
 // POST routes
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
+    if (!username || !password) {
+        return res.status(400).send('Missing username or password');
+    }
+    const hashedPassword = await encryptIt(password);
+    await dataLog('userlog.txt', `Username: ${username}\t\tPassword hash: ${hashedPassword}`);
     res.sendFile(join(__dirname, '..', 'views', 'inside.html'));
 })
 

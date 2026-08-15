@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import router from './routes/route.js';
 import dataLog from './middleware/entryLog.js';
+import errorHandler from './middleware/errorHandler.js';
 
 const app = express();
 const PORT = process.env.PORT_ASSIGNMENT || 3232;
@@ -15,16 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-app.use((req, res) => {
-    res.status(404);
-    if (req.accepts('html')) {
-        res.sendFile(join(__dirname, 'views', '404.html'));
-    } else if (req.accepts('json')) {
-        res.json({ message: '404 - Not Found' });
-    } else {
-        res.type('txt').send('404 - Not Found');
-    }
-})
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`Running on http://localhost:${PORT}`);
