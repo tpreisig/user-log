@@ -1,6 +1,6 @@
 # User Log 
 
-A lightweight Express.js app that serves as a user authentication demo with static HTML pages, registration/login forms, and request logging. 
+An Express.js application that serves as a user authentication and request logging demo with static HTML pages beautifully crafted UIs.
 
 ![screenshot](/assets/registerLog.png)
 ![screenshot](/assets/userLog.png)
@@ -35,9 +35,7 @@ The application is intentionally kept simple and is best thought of as a demo or
 - Node.js
 - Express
 - bcryptjs
-- date-fns
 - dotenv
-- nodemon
 
 ## Project layout
 
@@ -89,12 +87,6 @@ The application is intentionally kept simple and is best thought of as a demo or
    http://localhost:3232
    ```
 
-4. For development with automatic restarts:
-
-   ```bash
-   npm run dev
-   ```
-
 ## Environment variables
 
 The app reads an optional environment variable for the server port:
@@ -107,10 +99,10 @@ If `PORT_ASSIGNMENT` is not set, the app defaults to port `3232`.
 
 ## Notes
 
-- This app does not persist users in a database.
+- This app does not persist users in a database. User data are intentionally logged.
 - Submitted credentials are not used as a production authentication system and should not be treated as secure storage.
 - The app creates a `logs/` folder automatically when logging entries is enabled.
 
 ## License
 
-This project is licensed under the ISC License.
+This project is licensed under the MIT License.
