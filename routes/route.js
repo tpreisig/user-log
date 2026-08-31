@@ -11,6 +11,9 @@ const encryptIt = async (password) => {
     return await bcrypt.hash(password, 10);
 };
 
+const padItem = (entry, space) => String(entry).padEnd(space, ' ');
+
+
 // GET routes
 router.get(['/', '/index', '/index.html', '/home'], (req, res) => {
     res.sendFile(join(__dirname, '..', 'views', 'index.html'));
@@ -35,13 +38,17 @@ router.post('/login', async (req, res) => {
         return res.status(400).send('Missing username or password');
     }
     const hashedPassword = await encryptIt(password);
-    await dataLog('userlog.txt', `Username: ${username}\t\tPassword hash: ${hashedPassword}`);
+    await dataLog('userlog.txt', `Username: ${padItem(username, 12)} Password hash: ${padItem(hashedPassword, 36)}`);
     res.sendFile(join(__dirname, '..', 'views', 'inside.html'));
 })
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
+    if (!username || !password) {
+        return res.status(400).send('Missing username or password');
+    }
+    const hashedPassword = await encryptIt(password);
+    await dataLog('registerLog.txt', `Username: ${padItem(username, 12)} Pasword hash: ${padItem(hashedPassword, 36)}`);
     res.sendFile(join(__dirname, '..', 'views', 'login.html'));
 })
 
