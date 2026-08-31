@@ -3,7 +3,6 @@ import 'dotenv/config';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import router from './routes/route.js';
-import dataLog from './middleware/entryLog.js';
 import errorHandler from './middleware/errorHandler.js';
 
 const app = express();

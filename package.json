@@ -1,12 +1,10 @@
 {
   "dependencies": {
     "bcryptjs": "^3.0.3",
-    "date-fns": "^4.4.0",
     "express": "^5.2.1"
   },
   "devDependencies": {
-    "dotenv": "^17.4.2",
-    "nodemon": "^3.1.14"
+    "dotenv": "^17.4.2"
   },
   "name": "user-log",
   "version": "1.0.0",
@@ -14,7 +12,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "node --watch server"
   },
   "repository": {
     "type": "git",
