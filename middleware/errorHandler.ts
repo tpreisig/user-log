@@ -1,10 +1,11 @@
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { type Request, type Response } from 'express';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
-const errorHandler = (req, res) => {
+const errorHandler = (req: Request, res: Response) => {
     res.status(404);
     if (req.accepts('html')) {
         res.sendFile(join(__dirname, '..', 'views', '404.html'));
