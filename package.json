@@ -4,21 +4,22 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
-    "dotenv": "^17.4.2"
+    "@types/express": "^5.0.6",
+    "dotenv": "^17.4.2",
+    "tsx": "^4.23.15"
   },
   "name": "user-log",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "dev": "node --watch server"
+    "dev": "tsx server.ts",
+    "start": "node server.ts",
+    "watch": "node --watch server"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tpreisig/user-log.git"
   },
-  "keywords": [],
   "author": "tpreisig",
   "license": "ISC",
   "type": "module",

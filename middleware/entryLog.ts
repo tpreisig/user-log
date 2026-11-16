@@ -6,9 +6,9 @@ import crypto from 'node:crypto';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const pad2 = (n) => String(n).padStart(2, '0');
+const pad2 = (n: Number) => String(n).padStart(2, '0');
 
-const formatDate = (date) => {
+const formatDate = (date: Date) => {
     const yyyy = date.getFullYear();
     const MM = pad2(date.getMonth() + 1);
     const dd = pad2(date.getDate());
@@ -18,9 +18,9 @@ const formatDate = (date) => {
     return `${yyyy}/${MM}/${dd} ${HH}:${mm}:${ss}`;
 }
 
-const padItem = (entry, space) => String(entry).padEnd(space, ' ');
+const padItem = (entry: any, space: any) => String(entry).padEnd(space, ' ');
 
-const dataLog = async (fileIdentifier, data) => {
+const dataLog = async (fileIdentifier: string, data: any) => {
     const logItem = `${padItem(formatDate(new Date()), 20)}\t${padItem(crypto.randomUUID(), 36)}\t${data}\n`;
     try {
         const logDirectory = join(__dirname, '..', 'logs');
@@ -35,3 +35,4 @@ const dataLog = async (fileIdentifier, data) => {
 }
 
 export default dataLog;
+
