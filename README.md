@@ -75,33 +75,30 @@ The application is intentionally kept simple and is best thought of as a demo or
    npm install
    ```
 
-2. Start the app:
+2. Create certificates for https:
 
    ```bash
-   npm start
+   mkcert -key-file certificates/localhost-key.pem -cert-file certificates/localhost.pem localhost 127.0.0.1 ::1
    ```
 
-3. Open the app in a browser:
+3. Run the app in a browser:
 
-   ```text
-   http://localhost:3232
+   ```bash
+   npm run dev
    ```
 
 ## Environment variables
 
 The app reads an optional environment variable for the server port:
 
-```bash
-PORT_ASSIGNMENT=4000 npm start
-```
-
-If `PORT_ASSIGNMENT` is not set, the app defaults to port `3232`.
+If `PORT` is not set, the app defaults to port `3232`.
 
 ## Notes
 
-- This app does not persist users in a database. User data are intentionally logged.
-- Submitted credentials are not used as a production authentication system and should not be treated as secure storage.
-- The app creates a `logs/` folder automatically when logging entries is enabled.
+- This application is meant for a demo and not a auth system. 
+- It serves static HTML pages and bcrypt-hashes the passwords and appends them to a file under logs.
+- Any non-empty username and password “succeeds.” 
+- It is not meant to be used as a production authentication system and should not be treated as secure storage.
 
 ## License
 
